@@ -14,6 +14,7 @@ type TransactionStatus =
   (typeof TRANSACTION_STATUS)[keyof typeof TRANSACTION_STATUS]
 
 export type TTransaction = {
+  userID: any
   _id: string
   buyerID: {
     _id: string
@@ -214,8 +215,8 @@ const TransactionTable: FC<Props> = ({ transactions }) => {
                 onClick={() =>
                   currentTransactionId
                     ? handleTransactionStatusUpdate(
-                        TRANSACTION_STATUS.COMPLETED,
-                      )
+                      TRANSACTION_STATUS.COMPLETED,
+                    )
                     : handleItemStatusUpdate('sold')
                 }
                 disabled={transactionStatusUpdated || itemStatusUpdated} // Disable after update
