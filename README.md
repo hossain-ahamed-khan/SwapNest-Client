@@ -1,4 +1,4 @@
-# 🛒 ResellBD - Frontend
+# 🛒 SwapNest - Frontend
 
 SwapNest is a modern web platform designed to simplify the exchange of second-hand goods. This repository houses the **frontend** of SwapNest, crafted with contemporary web technologies to deliver an intuitive, fast, and user-friendly marketplace experience.
 ---
