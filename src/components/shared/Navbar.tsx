@@ -71,7 +71,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const { wishlist, clearWishlist } = useWishlist()
 
-  // State for wishlist animation
+
   const [lastWishlistClick, setLastWishlistClick] = useState<number | null>(
     null,
   )
@@ -307,7 +307,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
+
         <nav className="hidden lg:flex items-center space-x-2">
           <NavLink href="/listings" label="Browse" />
           <NavLink
@@ -318,7 +318,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-2 ml-4">
             <div className="h-8 border-r border-white/10"></div>
 
-            {/* Enhanced Wishlist Button with animation */}
+
             <WishlistButton />
 
             {user ? (

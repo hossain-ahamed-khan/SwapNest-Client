@@ -48,7 +48,7 @@ const Homepage = () => {
   const [featuredListings, setFeaturedListings] = useState<TListing[]>([])
   const [isLoading, setIsLoadingState] = useState(true)
 
-  // Stats for the statistics section
+
   const stats = [
     {
       value: '50K+',
@@ -76,13 +76,12 @@ const Homepage = () => {
     },
   ]
 
-  // Fetch featured listings
+
   useEffect(() => {
     const fetchFeaturedListings = async () => {
       try {
         const response = await getListings()
         if (response && response.success) {
-          // Get random 6 listings or fewer if not enough listings
           const shuffled = [...response.data].sort(() => 0.5 - Math.random())
           setFeaturedListings(shuffled.slice(0, 6))
         }
@@ -96,7 +95,7 @@ const Homepage = () => {
     fetchFeaturedListings()
   }, [])
 
-  // Process card color classes for featured items
+
   const getCardColorClass = (index: number) => {
     const colorClasses = [
       'from-pink-500 to-rose-500',
