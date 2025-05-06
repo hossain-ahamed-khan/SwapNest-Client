@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -10,26 +11,25 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { loginSchema } from './loginValidation'
-import { loginUser } from '@/services/AuthService'
-import { Button } from '@/components/ui/button'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { useUser } from '@/context/UserContext'
+import { loginUser } from '@/services/AuthService'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
-import { LockKeyhole, Mail, LogIn } from 'lucide-react'
+import { LockKeyhole, LogIn, Mail } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { loginSchema } from './loginValidation'
 
 const LoginForm = () => {
+  const { setIsLoading } = useUser()
   const form = useForm({ resolver: zodResolver(loginSchema) })
   const {
     formState: { isSubmitting, errors },
   } = form
 
-  const { setIsLoading } = useUser()
   const [showPassword, setShowPassword] = useState(false)
 
   const searchParams = useSearchParams()
@@ -39,12 +39,11 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data)
-      setIsLoading(true)
 
       if (res?.success) {
         // Show success toast notification instead of alert
         toast.success(res?.message)
-        alert('hello')
+        setIsLoading(true)
         if (redirect) {
           router.push(redirect)
         } else {
@@ -52,7 +51,7 @@ const LoginForm = () => {
         }
       } else {
         // Show error toast notification
-        toast.error(res?.message)
+        toast.error('Invalid credentials')
       }
     } catch (error: any) {
       console.error(error)

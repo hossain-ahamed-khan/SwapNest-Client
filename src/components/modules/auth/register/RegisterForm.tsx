@@ -31,12 +31,12 @@ import { toast } from 'sonner'
 import { registrationSchema } from './registerValidation'
 
 const RegisterForm = () => {
+  const { setIsLoading } = useUser()
   const form = useForm({ resolver: zodResolver(registrationSchema) })
   const {
     formState: { isSubmitting },
   } = form
 
-  const { setIsLoading } = useUser()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
@@ -47,7 +47,6 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await registerUser(data)
-      setIsLoading(true)
 
       if (res?.success) {
         toast.success(res?.message, {
@@ -57,7 +56,7 @@ const RegisterForm = () => {
             borderRadius: '12px',
           },
         })
-
+        setIsLoading(true)
         if (redirect) {
           router.push(redirect)
         } else {
