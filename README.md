@@ -117,7 +117,9 @@ resellbd-frontend/
 
 ---
 
-Github Link: https://github.com/rafiferdos/trendora
+Github Client Link: https://github.com/rafiferdos/trendora
+
+Github Server Link: https://github.com/Humayun1318/SwapNest-server
 
 Live Link: https://trendora-black.vercel.app/
 
